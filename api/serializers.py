@@ -5,3 +5,8 @@ class VehicleDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = VehicleData
         fields = ('Datetime', 'Light', 'Bus', 'SingleUnitTruck', 'ArticulatedTruck', 'MotorizedVehicle', 'Bicycle')
+
+class CreateGraphSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VehicleData
+        fields = ('Datetime', 'Light', 'Bus', 'SingleUnitTruck', 'ArticulatedTruck', 'MotorizedVehicle', 'Bicycle')
