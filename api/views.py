@@ -4,9 +4,12 @@ from .models import VehicleData
 from .serializers import VehicleDataSerializer, CreateGraphSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
+
 class VehicleDataView(generics.ListAPIView):
     queryset = VehicleData.objects.all()
     serializer_class = VehicleDataSerializer
@@ -14,6 +17,23 @@ class VehicleDataView(generics.ListAPIView):
 class CreateGraphView(APIView):     # inheriting API view allows us to override get and post method
     serializer_class = CreateGraphSerializer
     
+     
+    @api_view(['POST'])
+    def post(self, request):
+        if request.method == 'POST':
+            data = VehicleData.objects.all()
+            
+            title = request.query_params.get('startTime', None)
+            print(title)
+            #if title is not None:
+
+                #tutorials = tutorials.filter(title__icontains=title)
+            
+            #tutorials_serializer = TutorialSerializer(tutorials, many=True)
+            #return JsonResponse(tutorials_serializer.data, safe=False)
+
+
+    '''     
     def post(self, request, format=None):
         if not self.request.session.exists(self.request.session_key):
             self.request.session.create()
@@ -31,3 +51,4 @@ class CreateGraphView(APIView):     # inheriting API view allows us to override 
                 graph = VehicleData(Datetime=dates,Light=lv,Bus=bus,SingleUnitTruck=sut, ArticulatedTruck=at, MotorizedVehicle=mv,Bicycle=cycle)
                 graph.save()
                 return Response(VehicleDataSerializer(graph).data, status=status.HTTP_)
+    '''

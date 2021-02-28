@@ -52,7 +52,9 @@ export default class Navbar extends Component{
                 graphType : this.state.graphtype
             }),
         };
-        fetch('/api/' , requestOptions).then((response) => response.json()).then((data) => console.log(data));
+        //const axios = require('axios');
+
+        fetch('api/graph/' , requestOptions).then( console.log(requestOptions.startTime));
     }
 
       render() {
