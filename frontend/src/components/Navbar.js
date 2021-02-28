@@ -7,6 +7,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import CSRFToken from './Csrftoken';
+
 
 export default class Navbar extends Component{
     constructor(props) {
@@ -52,9 +54,16 @@ export default class Navbar extends Component{
                 graphType : this.state.graphtype
             }),
         };
-        //const axios = require('axios');
+        const axios = require('axios');
+        axios.post('/api/graph/',
+            requestOptions.body).then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
 
-        fetch('api/graph/' , requestOptions).then( console.log(requestOptions.startTime));
+        //fetch('api/graph/' , requestOptions).then( console.log(requestOptions.startTime));
     }
 
       render() {
@@ -67,6 +76,7 @@ export default class Navbar extends Component{
                   </Grid>
                   <Grid item xs={12} align="center">
                       <FormControl component="fieldset">
+                            <CSRFToken />
                             <FormHelperText>
                                 <div align="center">
                                     Choose Time frame for data 
