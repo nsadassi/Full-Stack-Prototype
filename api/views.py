@@ -18,7 +18,7 @@ class VehicleDataView(generics.ListAPIView):
 class CreateGraphView(APIView):     # inheriting API view allows us to override get and post method
     serializer_class = CreateGraphSerializer
     
-    @ensure_csrf_cookie
+    #@ensure_csrf_cookie
     @api_view(['POST'])
     def post(self, request):
         if request.method == 'POST':
